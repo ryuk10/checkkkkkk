@@ -20,6 +20,6 @@ func HashCode(dec string) string {
 func main() {
 	fmt.Println(HashCode("A"))
 	fmt.Println(HashCode("AB"))
-	fmt.Println(HashCode("BACé"))
+	fmt.Println(HashCode("BAC"))
 	fmt.Println(HashCode("Hello World"))
 }
