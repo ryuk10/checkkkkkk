@@ -4,25 +4,37 @@ import (
 	"fmt"
 )
 
-func WeAreUnique(str1, str2 string) []string {
-	
-	var unique []string
-
+func WeAreUnique(str1, str2 string) int {
 	if str1 == "" || str2 == "" {
-		return nil
+		return -1
 	}
 
-	for i := 0; i <= len(str1)-1; i++ {
-		for j := 0; j <= len(str2)-1; j++ {
-			if str1[i] == str2[j] {
-				
-			}
+	s1 := map[rune]int{}
+	s2 := map[rune]int{}
+	uniqueCounter := 0
+
+	for _, char := range str1 {
+		s1[char]++
+	}
+	for _, char := range str2 {
+		s2[char]++
+	}
+
+	for char, num := range s1 {
+		if num == 1 && s2[char] == 0 {
+			uniqueCounter++
 		}
 	}
+	for char, num := range s2 {
+		if num == 1 && s1[char] == 0 {
+			uniqueCounter++
+		}
+	}
+	return uniqueCounter
 }
 
 func main() {
-	fmt.Println(WeAreUnique("foo", "vboo"))
+	fmt.Println(WeAreUnique("foo", "boo"))
 	fmt.Println(WeAreUnique("", ""))
-	fmt.Println(WeAreUnique("abc", "daef"))
+	fmt.Println(WeAreUnique("abc", "def"))
 }
